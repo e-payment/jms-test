@@ -38,6 +38,14 @@
     <finalName>${project.artifactId}</finalName>
     <plugins>
         <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>3.1.0</version>
+            <configuration>
+                <mainClass>com.ibm.mq.samples.jms.JmsGet</mainClass>
+            </configuration>
+        </plugin>
+        <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-assembly-plugin</artifactId>
             <version>3.3.0</version>
@@ -47,7 +55,8 @@
                 </descriptorRefs>
                 <archive>
                   <manifest>
-                    <mainClass>io.github.junlapong.App</mainClass>
+                    <!-- <mainClass>io.github.junlapong.App</mainClass> -->
+                    <mainClass>com.ibm.mq.samples.jms.JmsGet</mainClass>
                   </manifest>
                 </archive>
             </configuration>
