@@ -69,7 +69,10 @@ public class JmsGet {
 	 */
 	public static void main(String[] args) {
 
-		System.setProperty("javax.net.ssl.trustStore", "/Dev/cert/truststore.jks"); // change path on your computer
+		String trustStore = System.getProperty("user.dir") + "/keystore/truststore.jks";
+		System.out.println("trustStore: " + trustStore);
+
+		System.setProperty("javax.net.ssl.trustStore", trustStore); // change path on your computer
 		System.setProperty("javax.net.ssl.trustStorePassword", "P@ssw0rd");
 		System.setProperty("com.ibm.mq.cfg.useIBMCipherMappings", "false");
 
