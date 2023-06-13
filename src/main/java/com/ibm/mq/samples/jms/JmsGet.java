@@ -60,7 +60,7 @@ public class JmsGet {
 	private static final String APP_USER = "appepm"; // Username that application uses to connect to MQ
 	private static final String APP_PASSWORD = "BKSapr#5"; // Password that the application uses to connect to MQ
 	private static final String QUEUE_NAME = "EPM.SUB.EVENT.PDPA.DISPOSAL.INFO.KMA"; // Queue that the application uses to put and get messages to and from
-	private static final String TOPIC_NAME = "EVENT/PDPA/DISPOSAL/INFO/KMA"; // Topic that the application uses to pub and sub messages to and from
+//	private static final String TOPIC_NAME = "EVENT/PDPA/DISPOSAL/INFO/KMA"; // Topic that the application uses to pub and sub messages to and from
 
 	/**
 	 * Main method

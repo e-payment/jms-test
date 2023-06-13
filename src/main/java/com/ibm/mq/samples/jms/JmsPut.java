@@ -54,14 +54,13 @@ public class JmsPut {
 	private static int status = 1;
 
 	// Create variables for the connection to MQ
-	private static final String HOST = "_YOUR_HOSTNAME_"; // Host name or IP address
-	private static final int PORT = 1414; // Listener port for your queue manager
-	private static final String CHANNEL = "DEV.APP.SVRCONN"; // Channel name
-	private static final String QMGR = "QM1"; // Queue manager name
-	private static final String APP_USER = "app"; // User name that application uses to connect to MQ
-	private static final String APP_PASSWORD = "_APP_PASSWORD_"; // Password that the application uses to connect to MQ
-	private static final String QUEUE_NAME = "DEV.QUEUE.1"; // Queue that the application uses to put and get messages to and from
-
+	private static final String CONNECTION_NAME_LIST = "192.168.223.9(1419)"; // Connection name list
+	private static final String CHANNEL = "EPM.SSL.SVRCONN"; // Channel name
+	private static final String QMGR = "EMQ01"; // Queue manager name
+	private static final String APP_USER = "appepm"; // Username that application uses to connect to MQ
+	private static final String APP_PASSWORD = "BKSapr#5"; // Password that the application uses to connect to MQ
+	private static final String QUEUE_NAME = "EPM.SUB.EVENT.PDPA.DISPOSAL.INFO.KMA"; // Queue that the application uses to put and get messages to and from
+//	private static final String TOPIC_NAME = "EVENT/PDPA/DISPOSAL/INFO/KMA"; // Topic that the application uses to pub and sub messages to and from
 
 	/**
 	 * Main method
@@ -70,13 +69,15 @@ public class JmsPut {
 	 */
 	public static void main(String[] args) {
 
+		System.setProperty("javax.net.ssl.trustStore", "/Dev/cert/truststore.jks"); // change path on your computer
+		System.setProperty("javax.net.ssl.trustStorePassword", "P@ssw0rd");
+		System.setProperty("com.ibm.mq.cfg.useIBMCipherMappings", "false");
+
 		// Variables
 		JMSContext context = null;
 		Destination destination = null;
 		JMSProducer producer = null;
 		JMSConsumer consumer = null;
-
-
 
 		try {
 			// Create a connection factory
@@ -84,8 +85,9 @@ public class JmsPut {
 			JmsConnectionFactory cf = ff.createConnectionFactory();
 
 			// Set the properties
-			cf.setStringProperty(WMQConstants.WMQ_HOST_NAME, HOST);
-			cf.setIntProperty(WMQConstants.WMQ_PORT, PORT);
+			// cf.setStringProperty(WMQConstants.WMQ_HOST_NAME, HOST);
+			// cf.setIntProperty(WMQConstants.WMQ_PORT, PORT);
+			cf.setStringProperty(WMQConstants.WMQ_CONNECTION_NAME_LIST, CONNECTION_NAME_LIST);
 			cf.setStringProperty(WMQConstants.WMQ_CHANNEL, CHANNEL);
 			cf.setIntProperty(WMQConstants.WMQ_CONNECTION_MODE, WMQConstants.WMQ_CM_CLIENT);
 			cf.setStringProperty(WMQConstants.WMQ_QUEUE_MANAGER, QMGR);
@@ -93,6 +95,7 @@ public class JmsPut {
 			cf.setBooleanProperty(WMQConstants.USER_AUTHENTICATION_MQCSP, true);
 			cf.setStringProperty(WMQConstants.USERID, APP_USER);
 			cf.setStringProperty(WMQConstants.PASSWORD, APP_PASSWORD);
+			cf.setStringProperty(WMQConstants.WMQ_SSL_CIPHER_SUITE, "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384");
 			//cf.setStringProperty(WMQConstants.WMQ_SSL_CIPHER_SUITE, "*TLS12");
 
 			// Create JMS objects
@@ -106,7 +109,7 @@ public class JmsPut {
 			producer.send(destination, message);
 			System.out.println("Sent message:\n" + message);
 
-                        context.close();
+			context.close();
 
 			recordSuccess();
 		} catch (JMSException jmsex) {
@@ -115,7 +118,7 @@ public class JmsPut {
 
 		System.exit(status);
 
-	} // end main()
+	}
 
 	/**
 	 * Record this run as successful.
