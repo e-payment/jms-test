@@ -71,6 +71,7 @@ public class JmsGet {
 
 		String trustStore = System.getProperty("user.dir") + "/keystore/truststore.jks";
 		System.out.println("trustStore: " + trustStore);
+		System.out.println("CONNECTION_NAME_LIST: " + CONNECTION_NAME_LIST);
 
 		System.setProperty("javax.net.ssl.trustStore", trustStore); // change path on your computer
 		System.setProperty("javax.net.ssl.trustStorePassword", "P@ssw0rd");

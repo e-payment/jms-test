@@ -73,6 +73,7 @@ public class JmsPut {
 
 		String trustStore = System.getProperty("user.dir") + "/keystore/truststore.jks";
 		System.out.println("trustStore: " + trustStore);
+		System.out.println("CONNECTION_NAME_LIST: " + CONNECTION_NAME_LIST);
 
 		System.setProperty("javax.net.ssl.trustStore", trustStore); // change path on your computer
 		System.setProperty("javax.net.ssl.trustStorePassword", "P@ssw0rd");
@@ -83,6 +84,42 @@ public class JmsPut {
 		Destination destination = null;
 		JMSProducer producer = null;
 		JMSConsumer consumer = null;
+
+//		String kmaMsg = "{\n" +
+//				"    \"trackingReference\": \"BAYPDP20230223\",\n" +
+//				"    \"items\": [\n" +
+//				"        {\n" +
+//				"            \"trackingID\": \"BAYPDP20230223000001\",\n" +
+//				"            \"CIF\": \"000000000000001\",\n" +
+//				"            \"CustID\": \"KMA_USERNAME_1\",\n" +
+//				"            \"REF\": null\n" +
+//				"        },\n" +
+//				"        {\n" +
+//				"            \"trackingID\": \"BAYPDP20230223000002\",\n" +
+//				"            \"CIF\": \"000000000000002\",\n" +
+//				"            \"CustID\": \"KMA_USERNAME_2\",\n" +
+//				"            \"REF\": \"REFERENCE_FROM_KMA_BACKEND\"\n" +
+//				"        }\n" +
+//				"    ]\n" +
+//				"}";
+
+        String kmaMsg = "{\n" +
+                "  \"trackingReference\": \"BAYPDP20230615\",\n" +
+                "  \"items\": [\n" +
+                "    {\n" +
+                "      \"trackingId\": \"BAYPDP20230615000001\",\n" +
+                "      \"cifNumber\": \"00000001083075\",\n" +
+                "      \"customerId\": \"SHREYUNI\",\n" +
+                "      \"kmaReferenceId\": null\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"trackingId\": \"BAYPDP20230615000002\",\n" +
+                "      \"cifNumber\": \"00000030040719\",\n" +
+                "      \"customerId\": \"@RMU9B3ECEEC6A404A\",\n" +
+                "      \"kmaReferenceId\": \"BAYPDPA23061500003\"\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
 
 		try {
 			// Create a connection factory
@@ -108,7 +145,8 @@ public class JmsPut {
 			destination = context.createQueue("queue:///" + QUEUE_NAME);
 
 			long uniqueNumber = System.currentTimeMillis() % 1000;
-			TextMessage message = context.createTextMessage("Your lucky number today is " + uniqueNumber);
+			//TextMessage message = context.createTextMessage("Your lucky number today is " + uniqueNumber);
+			TextMessage message = context.createTextMessage(kmaMsg);
 
 			producer = context.createProducer();
 			producer.send(destination, message);
