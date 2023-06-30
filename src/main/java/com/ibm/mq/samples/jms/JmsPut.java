@@ -54,7 +54,8 @@ public class JmsPut {
 	private static int status = 1;
 
 	// Create variables for the connection to MQ
-	private static final String CONNECTION_NAME_LIST = "192.168.223.9(1419)"; // Connection name list
+//	private static final String CONNECTION_NAME_LIST = "192.168.223.9(1419)"; // SIT
+	private static final String CONNECTION_NAME_LIST = "192.168.223.4(1419),192.168.223.8(1419)"; // UAT
 	private static final String CHANNEL = "EPM.SSL.SVRCONN"; // Channel name
 	private static final String QMGR = "EMQ01"; // Queue manager name
 	private static final String APP_USER = "appepm"; // Username that application uses to connect to MQ
@@ -103,23 +104,71 @@ public class JmsPut {
 //				"    ]\n" +
 //				"}";
 
-        String kmaMsg = "{\n" +
-                "  \"trackingReference\": \"BAYPDP20230615\",\n" +
-                "  \"items\": [\n" +
-                "    {\n" +
-                "      \"trackingId\": \"BAYPDP20230615000001\",\n" +
-                "      \"cifNumber\": \"00000001083075\",\n" +
-                "      \"customerId\": \"SHREYUNI\",\n" +
-                "      \"kmaReferenceId\": null\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"trackingId\": \"BAYPDP20230615000002\",\n" +
-                "      \"cifNumber\": \"00000030040719\",\n" +
-                "      \"customerId\": \"@RMU9B3ECEEC6A404A\",\n" +
-                "      \"kmaReferenceId\": \"BAYPDPA23061500003\"\n" +
-                "    }\n" +
-                "  ]\n" +
-                "}";
+//        String kmaMsg = "{\n" +
+//                "  \"trackingReference\": \"BAYPDP20230615\",\n" +
+//                "  \"items\": [\n" +
+//                "    {\n" +
+//                "      \"trackingId\": \"BAYPDP20230615000001\",\n" +
+//                "      \"cifNumber\": \"00000001083075\",\n" +
+//                "      \"customerId\": \"SHREYUNI\",\n" +
+//                "      \"kmaReferenceId\": null\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"trackingId\": \"BAYPDP20230615000002\",\n" +
+//                "      \"cifNumber\": \"00000030040719\",\n" +
+//                "      \"customerId\": \"@RMU9B3ECEEC6A404A\",\n" +
+//                "      \"kmaReferenceId\": \"BAYPDPA23061500003\"\n" +
+//                "    }\n" +
+//                "  ]\n" +
+//                "}";
+
+		String kmaMsg = "{\n" +
+				"  \"trackingReference\": \"BAYPDP20230629\",\n" +
+				"  \"items\": [\n" +
+				"    {\n" +
+				"      \"trackingId\": \"BAYPDP20230629000001\",\n" +
+				"      \"cifNumber\": \"00000001083075\",\n" +
+				"      \"customerId\": \"uatew12\",\n" +
+				"      \"kmaReferenceId\": null\n" +
+				"    },\n" +
+				"    {\n" +
+				"      \"trackingId\": \"BAYPDP20230629000002\",\n" +
+				"      \"cifNumber\": \"00000001083076\",\n" +
+				"      \"customerId\": \"kkhun01\",\n" +
+				"      \"kmaReferenceId\": null\n" +
+				"    },\n" +
+				"    {\n" +
+				"      \"trackingId\": \"BAYPDP20230629000003\",\n" +
+				"      \"cifNumber\": \"00000001083077\",\n" +
+				"      \"customerId\": \"linepay3\",\n" +
+				"      \"kmaReferenceId\": null\n" +
+				"    },\n" +
+				"    {\n" +
+				"      \"trackingId\": \"BAYPDP20230629000004\",\n" +
+				"      \"cifNumber\": \"00000001083078\",\n" +
+				"      \"customerId\": \"ifin04\",\n" +
+				"      \"kmaReferenceId\": null\n" +
+				"    },\n" +
+				"    {\n" +
+				"      \"trackingId\": \"BAYPDP20230629000005\",\n" +
+				"      \"cifNumber\": \"00000030040719\",\n" +
+				"      \"customerId\": \"@RMU9B3ECEEC6A404A\",\n" +
+				"      \"kmaReferenceId\": \"BAYPDP2023062900005\"\n" +
+				"    },\n" +
+				"    {\n" +
+				"      \"trackingId\": \"BAYPDP20230629000006\",\n" +
+				"      \"cifNumber\": \"00000030040720\",\n" +
+				"      \"customerId\": \"@RMU9B3ECEEC6A404B\",\n" +
+				"      \"kmaReferenceId\": \"BAYPDP2023062900006\"\n" +
+				"    },\n" +
+				"    {\n" +
+				"      \"trackingId\": \"BAYPDP20230629000007\",\n" +
+				"      \"cifNumber\": \"00000030040721\",\n" +
+				"      \"customerId\": \"@RMU9B3ECEEC6A404C\",\n" +
+				"      \"kmaReferenceId\": \"BAYPDP2023062900007\"\n" +
+				"    }\n" +
+				"  ]\n" +
+				"}\n";
 
 		try {
 			// Create a connection factory

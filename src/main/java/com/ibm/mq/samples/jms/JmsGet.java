@@ -54,7 +54,8 @@ public class JmsGet {
 	private static int status = 1;
 
 	// Create variables for the connection to MQ
-	private static final String CONNECTION_NAME_LIST = "192.168.223.9(1419)"; // Connection name list
+//	private static final String CONNECTION_NAME_LIST = "192.168.223.9(1419)"; // SIT
+	private static final String CONNECTION_NAME_LIST = "192.168.223.4(1419),192.168.223.8(1419)"; // UAT
 	private static final String CHANNEL = "EPM.SSL.SVRCONN"; // Channel name
 	private static final String QMGR = "EMQ01"; // Queue manager name
 	private static final String APP_USER = "appepm"; // Username that application uses to connect to MQ
